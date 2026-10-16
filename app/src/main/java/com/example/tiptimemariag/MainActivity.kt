@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -32,6 +33,7 @@ import com.example.tiptimemariag.ui.theme.TipTimeMariaGTheme
 import java.text.NumberFormat
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.text.input.KeyboardType
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,10 +57,13 @@ class MainActivity : ComponentActivity() {
     }
     @Composable
     fun EditNumberField(modifier: Modifier = Modifier) {
-        val amountInput: MutableState<String> = remember { mutableStateOf("0") }
+        val amountInput: MutableState<String> = remember { mutableStateOf("") }
         TextField(
             value = amountInput.value,
             onValueChange = {amountInput.value = it},
+            singleLine = true,
+            label = { Text(stringResource(R.string.bill_amount)) },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             modifier = modifier
         )
     }
