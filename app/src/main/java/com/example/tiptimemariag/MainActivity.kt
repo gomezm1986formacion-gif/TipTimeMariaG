@@ -113,6 +113,7 @@ class MainActivity : ComponentActivity() {
 
     @Composable
     fun TipTimeTheme(content: @Composable () -> Unit) {
-        TODO("Not yet implemented")
+        MaterialTheme(
+            content = content)
     }
 }
