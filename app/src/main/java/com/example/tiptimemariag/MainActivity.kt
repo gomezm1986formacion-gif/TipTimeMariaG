@@ -55,7 +55,7 @@ class MainActivity : ComponentActivity() {
     fun EditNumberField(
         modifier: Modifier = Modifier
     ) {
-        val amountInput: MutableState<String> = remember { mutableStateOf(("")
+        val amountInput: MutableState<String> = remember { mutableStateOf((""))
         }
         val amount = amountInput.value.toDoubleOrNull() ?: 0.0
         val tip = calculateTip(amount)
