@@ -36,16 +36,14 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            //CODIGO INTERFAZ
-            Surface(
-                //...
-            ) {
-                TipTimeLayout()
+            TipTimeTheme {  //CODIGO INTERFAZ
+                Surface{
+                    //...
+                    TipTimeLayout()
+                }
             }
-
         }
     }
-
     //FUNCION
     private fun calculateTip(amount: Double, tipPercent: Double = 15.0): String {
         val tip = tipPercent / 100 * amount
@@ -53,6 +51,8 @@ class MainActivity : ComponentActivity() {
     }
     @Composable
     fun EditNumberField(
+        value: String,
+        onValueChange: (String) -> Unit,
         modifier: Modifier = Modifier
     ) {
         val amountInput: MutableState<String> = remember { mutableStateOf((""))
@@ -71,6 +71,9 @@ class MainActivity : ComponentActivity() {
     }
     @Composable
     fun TipTimeLayout() {
+        val amountInput: MutableState<String> = remember { mutableStateOf("") }
+        val amount = amountInput.value.toDoubleOrNull() ?: 0.0
+        val tip = calculateTip(amount)
         Column(
             modifier = Modifier
                 .statusBarsPadding()
@@ -87,6 +90,8 @@ class MainActivity : ComponentActivity() {
                     .align(alignment = Alignment.Start)
             )
             EditNumberField(
+                value = amountInput.value,
+                onValueChange = { amountInput.value = it },
                 modifier = Modifier.padding(bottom = 32.dp).fillMaxWidth(),
             )
             Text(
