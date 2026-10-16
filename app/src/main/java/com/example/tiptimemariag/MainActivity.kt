@@ -16,6 +16,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -32,14 +33,21 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             //CODIGO INTERFAZ
+            Surface(
+                //...
+            ) {
+                TipTimeLayout()
+            }
 
         }
     }
-//FUNCION
-private fun calculateTip(amount: Double, tipPercent: Double = 15.0): String {
-    val tip = tipPercent / 100 * amount
-    return NumberFormat.getCurrencyInstance().format(tip)
-}
+
+    //FUNCION
+    private fun calculateTip(amount: Double, tipPercent: Double = 15.0): String {
+        val tip = tipPercent / 100 * amount
+        return NumberFormat.getCurrencyInstance().format(tip)
+    }
+
     @Composable
     fun TipTimeLayout() {
         Column(
@@ -63,5 +71,18 @@ private fun calculateTip(amount: Double, tipPercent: Double = 15.0): String {
             )
             Spacer(modifier = Modifier.height(150.dp))
         }
+    }
+
+    @Preview(showBackground = true)
+    @Composable
+    fun TipTimeLayoutPreview() {
+        TipTimeTheme {
+            TipTimeLayout()
+        }
+    }
+
+    @Composable
+    fun TipTimeTheme(content: @Composable () -> Unit) {
+        TODO("Not yet implemented")
     }
 }
